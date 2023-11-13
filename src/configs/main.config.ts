@@ -7,17 +7,17 @@ export const ACTION = {
   export: 'export',
 };
 
-export const FILTER_OPERATOR = {
-  EQUAL: 'equal',
-  NOT_EQUAL: 'not_equal',
-  CONTAIN: 'contain',
-  LESS_THAN: 'less_than',
-  LESS_THAN_OR_EQUAL_TO: 'less_than_or_equal_to',
-  GREATER_THAN: 'greater_than',
-  GREATER_THAN_OR_EQUAL_TO: 'greater_than_or_equal_to',
-  INCLUDES: 'includes',
-  BETWEEN: 'between',
-};
+export enum FILTER_OPERATOR {
+  EQUAL = 'equal',
+  NOT_EQUAL = 'not_equal',
+  CONTAIN = 'contain',
+  LESS_THAN = 'less_than',
+  LESS_THAN_OR_EQUAL_TO = 'less_than_or_equal_to',
+  GREATER_THAN = 'greater_than',
+  GREATER_THAN_OR_EQUAL_TO = 'greater_than_or_equal_to',
+  INCLUDES = 'includes',
+  BETWEEN = 'between',
+}
 
 export default {
   responseInterceptorExcludePaths: /getPdf|download|download-file/,

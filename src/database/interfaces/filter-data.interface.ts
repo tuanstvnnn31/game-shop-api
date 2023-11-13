@@ -1,13 +1,14 @@
 export interface FilterData {
-  page: number;
+  pageSize: number;
+  current: number;
   limit: number;
   sort_direction: string; // asc | desc
   sort_column: string;
-  f: Filer[];
+  filters: Filter[];
   prefix_filter_field: string;
 }
 
-interface Filer {
+interface Filter {
   field: string;
   operator: string;
   value: any;

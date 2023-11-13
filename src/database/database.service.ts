@@ -20,19 +20,21 @@ export class DatabaseService {
     columns?: string[],
     columnsOverwrite?: string[],
   ) {
-    // console.log(query.alias);
+    console.log('[filters]', filters);
 
     if (columnsOverwrite) {
       columns = [...columns, ...columnsOverwrite];
     }
 
     let parameters = query.getQueryAndParameters()[1];
-    if (filters.f) {
+    console.log('parameters', parameters);
+
+    if (filters.filters) {
       this.logger.debug(
-        '@findWithPagination > filters > ' + JSON.stringify(filters.f),
+        '@findWithPagination > filters > ' + JSON.stringify(filters.filters),
       );
 
-      filters.f.forEach((item) => {
+      filters.filters.forEach((item) => {
         const fieldName = item.field;
         const operator = item.operator.toLocaleLowerCase();
 
@@ -151,7 +153,7 @@ export class DatabaseService {
     if (limit > 0) {
       query.limit(limit);
     }
-    const pageNum = filters.page ? Number(filters.page) : 1;
+    const pageNum = filters.current ? Number(filters.current) : 1;
     if (pageNum > 0) {
       query.offset((pageNum - 1) * limit);
     }
@@ -175,7 +177,7 @@ export class DatabaseService {
 
     if (limit < 0) {
       return {
-        collection: list,
+        data: list,
         total: row_total,
         total_current: list.length,
       };
@@ -189,7 +191,7 @@ export class DatabaseService {
     const next_page = pageNum < last_page ? pageNum + 1 : pageNum;
 
     return {
-      collection: list,
+      data: list,
       total: row_total,
       total_current: row_total_current,
       from: from + 1,

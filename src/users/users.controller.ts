@@ -24,11 +24,7 @@ export class UsersController {
   @Get()
   findAll(@Query() q: any) {
     console.log(q);
-    return this.usersService.findAll(q.s, {
-      limit: +q.limit,
-      offset: q.offset,
-      page: q.page,
-    });
+    return this.usersService.findAll(q);
   }
 
   @Get(':id')
